@@ -26,3 +26,12 @@ foreach ($adultPersons as $adultPerson) : ?>
         <?= $adultPerson['name'] ?>
     </li>
 <?php endforeach; ?>
+
+<?php
+$adultPersonsCSVFile = fopen('adult_persons.csv', 'w');
+fwrite($adultPersonsCSVFile, 'name,age,sex' . PHP_EOL);
+foreach ($adultPersons as $adultPerson) {
+    fwrite($adultPersonsCSVFile, $adultPerson['name'] . ',' . $adultPerson['age'] . ',' . $adultPerson['sex'] . PHP_EOL);
+}
+fclose($adultPersonsCSVFile);
+?>
